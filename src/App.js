@@ -75,7 +75,7 @@ class BIT extends React.Component {
   render() {
     return (
       <div className="row">
-        <Desc value="A qubit is the basic unit of classical information. It can either be 0 or 1. You can toggle it by clicking on it."/>
+        <Desc value="A bit is the basic unit of classical information. It can either be 0 (false) or 1 (true). You can toggle it by clicking on it."/>
         <div className="col-md-2">
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick()}>
             {this.state.value?'1':'0'}
@@ -225,7 +225,7 @@ class QUBIT extends React.Component {
     return (
       <div className="row">
         <Desc
-          value="A qubit is the basic unit of quantum information. It can either be |0>, |1> or both but with some probability in each.
+          value="Qubit is the basic unit of quantum information. It can either be |0>, |1> or both but with some probability in each.
           Examples of single qubit: |0>, |1>. Examples of two qubit: |00>, |11>, |01>. You can toggle them by clicking on the digits."/>
         <div className="col-md-2">
           <span className="bar">|</span>
@@ -270,7 +270,7 @@ class X extends React.Component {
   render() {
     return (
       <div className="row">
-        <Desc value="X quantum gate flips the qubit"/>
+        <Desc value="X quantum gate flips the qubit, similar to NOT classical gate."/>
         <div className="col-md-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick()}>
@@ -310,7 +310,7 @@ class SWAP extends React.Component {
   render() {
     return (
       <div className="row">
-        <Desc value="SWAP quantum gate swaps two qubits"/>
+        <Desc value="SWAP quantum gate swaps the two qubits."/>
         <div className="col-md-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]}</button>
@@ -353,7 +353,7 @@ class CNOT extends React.Component {
   render() {
     return (
       <div className="row">
-        <Desc value="CNOT quantum gate flips the second qubit if first qubit is |1>"/>
+        <Desc value="CNOT quantum gate flips the second qubit if the first qubit is |1>."/>
         <div className="col-md-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]}</button>
@@ -398,7 +398,7 @@ class CCNOT extends React.Component {
   render() {
     return (
       <div className="row">
-        <Desc value="CCNOT quantum gate (also called Toffoli gate)"/>
+        <Desc value="CCNOT quantum gate (also called Toffoli gate) flips the third qubit if the first two qubits are |1>."/>
         <div className="col-md-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]?'1':'0'}</button>
@@ -450,7 +450,7 @@ class CSWAP extends React.Component {
   render() {
     return (
       <div className="row">
-        <Desc value="CSWAP quantum gate  (also called Fredkin gate)"/>
+        <Desc value="CSWAP quantum gate (also called Fredkin gate) swaps the last two qubits if the first qubit is |1>."/>
         <div className="col-md-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]?'1':'0'}</button>
@@ -475,22 +475,24 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h2 className="text-left">Classical bit</h2>
-        <BIT />
-        <h2 className="text-left">Single bit gates</h2>
-        <NOT />
-        <h2 className="text-left">Two bit gates</h2>
-        <AND />
-        <XOR />
+        <div className="p-3 bg-dark text-white">
+          <h2 className="text-left">Classical bit</h2>
+          <BIT />
+          <h2 className="text-left">Single bit gates</h2>
+          <NOT />
+          <h2 className="text-left">Two bit gates</h2>
+          <AND />
+          <XOR />
+        </div>
         <h2 className="text-left">What's a qubit?</h2>
         <QUBIT />
-        <h2 className="text-left">Single qubit gates</h2>
+        <h2 className="text-left">1-qubit gates</h2>
         <X />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of X gate looks like:</p>
           <img src={xgate}/>
         </div>
-        <h2 className="text-left">Two qubit gates</h2>
+        <h2 className="text-left">2-qubit gates</h2>
         <SWAP />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of SWAP gate looks like:</p>
@@ -501,7 +503,7 @@ class App extends React.Component {
           <p className="col-md-6">Quantum circuit diagram of CNOT gate looks like:</p>
           <img src={cnotgate}/>
         </div>
-        <h2 className="text-left">Three qubit gates</h2>
+        <h2 className="text-left">3-qubit gates</h2>
         <CCNOT />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of CCNOT gate looks like:</p>
