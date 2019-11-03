@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.gate {
+	margin-right: 1em;
+	margin-left: 1em;
+}
+.bit {
+	width: 3em;
+}
+
+/*.bit2 {
+	width: 3em;
+	display: inline;
+}
+
+.bit2 button {
+	display: block;
+}*/
