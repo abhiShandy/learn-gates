@@ -117,6 +117,72 @@ class NOT extends React.Component {
   }
 }
 
+class OR extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bitsIn: Array(2).fill(1),
+      bitOut: 1
+    };
+  }
+
+  handleClick(i) {
+    const bitsIn = this.state.bitsIn.slice();
+    bitsIn[i] = bitsIn[i]==1?0:1;
+    this.setState({
+      bitsIn: bitsIn,
+      bitOut: (bitsIn[0] || bitsIn[1]),
+    });
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <Desc value="OR gate produces true one either bit is true."/>
+        <div className="col-md-2">
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.bitsIn[0]}</button>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bitsIn[1]}</button>
+        </div>
+        <Gate value="OR"/>
+        <OutBit value={this.state.bitOut}/>
+      </div>
+    );
+  }
+}
+
+class NOR extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bitsIn: Array(2).fill(1),
+      bitOut: 1
+    };
+  }
+
+  handleClick(i) {
+    const bitsIn = this.state.bitsIn.slice();
+    bitsIn[i] = bitsIn[i]==1?0:1;
+    this.setState({
+      bitsIn: bitsIn,
+      bitOut: (bitsIn[0] || bitsIn[1])?0:1,
+    });
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <Desc value="NOR gate produces false one either bit is true. (opposte of OR gate)"/>
+        <div className="col-md-2">
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.bitsIn[0]}</button>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bitsIn[1]}</button>
+        </div>
+        <Gate value="NOR"/>
+        <OutBit value={this.state.bitOut}/>
+      </div>
+    );
+  }
+}
+
 class AND extends React.Component {
   constructor(props) {
     super(props);
@@ -144,6 +210,39 @@ class AND extends React.Component {
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bitsIn[1]}</button>
         </div>
         <Gate value="AND"/>
+        <OutBit value={this.state.bitOut}/>
+      </div>
+    );
+  }
+}
+
+class NAND extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bitsIn: Array(2).fill(1),
+      bitOut: 1
+    };
+  }
+
+  handleClick(i) {
+    const bitsIn = this.state.bitsIn.slice();
+    bitsIn[i] = bitsIn[i]==1?0:1;
+    this.setState({
+      bitsIn: bitsIn,
+      bitOut: (bitsIn[0] && bitsIn[1])?0:1,
+    });
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <Desc value="NAND gate does the opposite of AND gate."/>
+        <div className="col-md-2">
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.bitsIn[0]}</button>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bitsIn[1]}</button>
+        </div>
+        <Gate value="NAND"/>
         <OutBit value={this.state.bitOut}/>
       </div>
     );
@@ -481,8 +580,11 @@ class App extends React.Component {
           <h2 className="text-left">Single bit gates</h2>
           <NOT />
           <h2 className="text-left">Two bit gates</h2>
+          <OR />
           <AND />
           <XOR />
+          <NOR />
+          <NAND />
         </div>
         <h2 className="text-left">What's a qubit?</h2>
         <QUBIT />
