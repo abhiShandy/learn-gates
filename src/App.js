@@ -577,9 +577,9 @@ class App extends React.Component {
         <div className="p-3 bg-dark text-white">
           <h2 className="text-left">Classical bit</h2>
           <BIT />
-          <h2 className="text-left">Single bit gates</h2>
+          <h2 className="text-left">1-bit gates</h2>
           <NOT />
-          <h2 className="text-left">Two bit gates</h2>
+          <h2 className="text-left">2-bit gates</h2>
           <OR />
           <AND />
           <XOR />
