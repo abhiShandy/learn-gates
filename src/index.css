@@ -12,12 +12,11 @@ code {
     monospace;
 }
 
-.gate {
-	margin-right: 1em;
-	margin-left: 1em;
-}
 .bit {
 	width: 3em;
+}
+.App {
+	text-align: left;
 }
 
 /*.bit2 {

@@ -1,12 +1,24 @@
 import React from 'react';
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from './logo.svg';
 import './App.css';
 
 function Desc(props) {
   return (
-    <h2 className="col-md-8 text-left">
+    <p className="col-md-6 text-left">
       {props.value}
-    </h2>
+    </p>
+  );
+}
+
+function Gate(props) {
+  return (
+    <span>
+      <FontAwesomeIcon icon={faArrowRight}/>
+      <div className="btn btn-outline-info">{props.value}</div>
+      <FontAwesomeIcon icon={faArrowRight}/>
+    </span>
   );
 }
 
@@ -33,7 +45,7 @@ class NOT extends React.Component {
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick()}>
             {this.state.value?'1':'0'}
           </button>
-          <div className="gate btn btn-outline-info">NOT</div>
+          <Gate value="NOT"/>
           <div className="btn btn-outline-primary bit">{this.state.value?'0':'1'}</div>
         </div>
       </div>
@@ -74,7 +86,7 @@ class AND extends React.Component {
         <div className="col-md-4">
             <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bit1}</button>
             <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(2)}>{this.state.bit2}</button>
-            <div className="gate btn btn-outline-info">AND</div>
+            <Gate value="AND"/>
             <div className="btn btn-outline-primary bit">{this.state.value}</div>
         </div>
       </div>
@@ -115,7 +127,7 @@ class XOR extends React.Component {
         <div className="col-md-4">
             <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bit1}</button>
             <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(2)}>{this.state.bit2}</button>
-            <div className="gate btn btn-outline-info">AND</div>
+            <Gate value="XOR"/>
             <div className="btn btn-outline-primary bit">{this.state.value}</div>
         </div>
       </div>
@@ -144,7 +156,7 @@ class X extends React.Component {
         <Desc value="X quantum gate flips the qubit"/>
         <div className="col-md-4">
           |<button className="btn btn-outline-primary bit" onClick={() => this.handleClick()}>{this.state.qubitIn?'1':'0'}</button>&gt;
-          <div className="gate btn btn-outline-info">X</div>
+          <Gate value="X"/>
           |<div className="btn btn-outline-primary bit">{this.state.qubitIn?'0':'1'}</div>&gt;
         </div>
       </div>
@@ -182,7 +194,7 @@ class SWAP extends React.Component {
         <div className="col-md-4">
           |<button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubit1?'1':'0'}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(2)}>{this.state.qubit2?'1':'0'}</button>&gt;
-          <div className="gate btn btn-outline-info">SWAP</div>
+          <Gate value="SWAP"/>
           |<div className="btn btn-outline-primary bit">{this.state.qubit2?'1':'0'}</div>
           <div className="btn btn-outline-primary bit">{this.state.qubit1?'1':'0'}</div>&gt;
         </div>
@@ -222,8 +234,8 @@ class CNOT extends React.Component {
         <div className="col-md-4">
           |<button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubit1?'1':'0'}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(2)}>{this.state.qubit2?'1':'0'}</button>&gt;
-          <div className="gate btn btn-outline-info">CNOT</div>
-          |<div className="btn btn-outline-primary bit">{this.state.qubit1?'1':'0'}</div>
+          <Gate value="CNOT"/>
+          |<div className="btn btn-outline-primary bit disabled">{this.state.qubit1?'1':'0'}</div>
           <div className="btn btn-outline-primary bit">{this.state.qubit3?'1':'0'}</div>&gt;
         </div>
       </div>
@@ -234,15 +246,15 @@ class CNOT extends React.Component {
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <h2>Single bit Gates</h2>
+      <div>
+        <h2 className="text-left">Single bit gates</h2>
         <NOT />
-        <h2>Two bit Gates</h2>
+        <h2 className="text-left">Two bit gates</h2>
         <AND />
         <XOR />
-        <h2>Single qubit Gates</h2>
+        <h2 className="text-left">Single qubit gates</h2>
         <X />
-        <h2>Two qubit Gates</h2>
+        <h2 className="text-left">Two qubit gates</h2>
         <SWAP />
         <CNOT />
       </div>
