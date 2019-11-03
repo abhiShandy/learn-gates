@@ -53,6 +53,35 @@ function OutBit(props) {
   );
 }
 
+class BIT extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0,
+    };
+  }
+
+  handleClick() {
+    const value = !this.state.value;
+    this.setState({
+      value: value,
+    });
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <Desc value="A qubit is the basic unit of classical information. It can either be 0 or 1. You can toggle it by clicking on it."/>
+        <div className="col-md-2">
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick()}>
+            {this.state.value?'1':'0'}
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
+
 class NOT extends React.Component {
   constructor(props) {
     super(props);
@@ -153,6 +182,54 @@ class XOR extends React.Component {
         </div>
         <Gate value="XOR"/>
         <OutBit value={this.state.value}/>
+      </div>
+    );
+  }
+}
+
+class QUBIT extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      qubitIn: 0,
+      qubitsIn2: Array(2).fill(1),
+    };
+  }
+
+  handleClick(i) {
+    let qubitIn;
+    if (i==2) {
+      qubitIn = !this.state.qubitIn;
+    }
+    const qubitsIn2 = this.state.qubitsIn2.slice();
+    if (i==1 || i==0) {
+      qubitsIn2[i] = qubitsIn2[i]==1?0:1;
+    }
+    this.setState({
+      qubitIn: qubitIn,
+      qubitsIn2: qubitsIn2,
+    });
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <Desc
+          value="A qubit is the basic unit of quantum information. It can either be |0>, |1> or weighted sum of both.
+          Examples of single qubit: |0>, |1>. Examples of two qubit: |00>, |11>, |01>. You can toggle them by clicking on the digits."/>
+        <div className="col-md-2">
+          <span className="bar">|</span>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(2)}>
+            {this.state.qubitIn?'1':'0'}
+          </button>
+          <FontAwesomeIcon icon={faChevronRight} size="lg"/>
+        </div>
+        <div className="col-md-2">
+          <span className="bar">|</span>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn2[0]}</button>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubitsIn2[1]}</button>
+        <FontAwesomeIcon icon={faChevronRight} size='lg'/>
+        </div>
       </div>
     );
   }
@@ -383,17 +460,15 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="row text-center">
-          <div className="col-md-6">Description</div>
-          <div className="col-md-2">Input</div>
-          <div className="col-md-2">Gate</div>
-          <div className="col-md-2">Output</div>
-        </div>
+        <h2 className="text-left">Classical bit</h2>
+        <BIT />
         <h2 className="text-left">Single bit gates</h2>
         <NOT />
         <h2 className="text-left">Two bit gates</h2>
         <AND />
         <XOR />
+        <h2 className="text-left">What's a qubit?</h2>
+        <QUBIT />
         <h2 className="text-left">Single qubit gates</h2>
         <X />
         <h2 className="text-left">Two qubit gates</h2>
