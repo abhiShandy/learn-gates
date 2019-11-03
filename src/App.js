@@ -197,6 +197,7 @@ class QUBIT extends React.Component {
     this.state = {
       qubitIn: 0,
       qubitsIn2: Array(2).fill(1),
+      qubitsIn3: Array(3).fill(1),
     };
   }
 
@@ -206,12 +207,17 @@ class QUBIT extends React.Component {
       qubitIn = !this.state.qubitIn;
     }
     const qubitsIn2 = this.state.qubitsIn2.slice();
+    const qubitsIn3 = this.state.qubitsIn3.slice();
     if (i==1 || i==0) {
       qubitsIn2[i] = qubitsIn2[i]==1?0:1;
+    }
+    if (i>=2) {
+      qubitsIn3[i-2] = qubitsIn3[i-2]==1?0:1;
     }
     this.setState({
       qubitIn: qubitIn,
       qubitsIn2: qubitsIn2,
+      qubitsIn3: qubitsIn3,
     });
   }
 
@@ -219,7 +225,7 @@ class QUBIT extends React.Component {
     return (
       <div className="row">
         <Desc
-          value="A qubit is the basic unit of quantum information. It can either be |0>, |1> or weighted sum of both.
+          value="A qubit is the basic unit of quantum information. It can either be |0>, |1> or both but with some probability in each.
           Examples of single qubit: |0>, |1>. Examples of two qubit: |00>, |11>, |01>. You can toggle them by clicking on the digits."/>
         <div className="col-md-2">
           <span className="bar">|</span>
@@ -232,6 +238,13 @@ class QUBIT extends React.Component {
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn2[0]}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubitsIn2[1]}</button>
+        <FontAwesomeIcon icon={faChevronRight} size='lg'/>
+        </div>
+        <div className="col-md-2">
+          <span className="bar">|</span>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(2)}>{this.state.qubitsIn3[0]}</button>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(3)}>{this.state.qubitsIn3[1]}</button>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(4)}>{this.state.qubitsIn3[2]}</button>
         <FontAwesomeIcon icon={faChevronRight} size='lg'/>
         </div>
       </div>
