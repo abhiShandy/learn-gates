@@ -12,18 +12,22 @@ code {
     monospace;
 }
 
+.btn-outline-primary {
+	border: none;
+}
+
 .bit {
-	width: 3em;
+	width: 2.1em;
 }
 .App {
 	text-align: left;
 }
-
-/*.bit2 {
-	width: 3em;
-	display: inline;
+.bar {
+	font-weight: bold;
 }
 
-.bit2 button {
-	display: block;
-}*/
+.Gate .btn {
+	margin-left: 1em;
+	margin-Right: 1em;
+	width: 50%;
+}
