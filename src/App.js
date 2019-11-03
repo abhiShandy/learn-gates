@@ -1,7 +1,11 @@
 import React from 'react';
 import { faArrowRight, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import logo from './logo.svg';
+import xgate from './Xgate.png';
+import cnotgate from './cNotgate.png';
+import ccnotgate from './ccnotGate.png';
+import cswapgate from './cswapgate.png';
+import swapgate from './swapgate.png';
 import './App.css';
 
 function Desc(props) {
@@ -471,12 +475,32 @@ class App extends React.Component {
         <QUBIT />
         <h2 className="text-left">Single qubit gates</h2>
         <X />
+        <div className="row">
+          <p className="col-md-6">Quantum circuit diagram of X gate looks like:</p>
+          <img src={xgate}/>
+        </div>
         <h2 className="text-left">Two qubit gates</h2>
         <SWAP />
+        <div className="row">
+          <p className="col-md-6">Quantum circuit diagram of SWAP gate looks like:</p>
+          <img src={swapgate}/>
+        </div>
         <CNOT />
+        <div className="row">
+          <p className="col-md-6">Quantum circuit diagram of CNOT gate looks like:</p>
+          <img src={cnotgate}/>
+        </div>
         <h2 className="text-left">Three qubit gates</h2>
         <CCNOT />
+        <div className="row">
+          <p className="col-md-6">Quantum circuit diagram of CCNOT gate looks like:</p>
+          <img src={ccnotgate}/>
+        </div>
         <CSWAP />
+        <div className="row">
+          <p className="col-md-6">Quantum circuit diagram of CSWAP gate looks like:</p>
+          <img src={cswapgate}/>
+        </div>
       </div>
     );
   }
