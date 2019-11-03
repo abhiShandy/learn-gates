@@ -6,6 +6,8 @@ import cnotgate from './cNotgate.png';
 import ccnotgate from './ccnotGate.png';
 import cswapgate from './cswapgate.png';
 import swapgate from './swapgate.png';
+import adder3 from './3qAdder.png';
+import adder4 from './4qAdder.png';
 import './App.css';
 
 function Desc(props) {
@@ -18,7 +20,7 @@ function Desc(props) {
 
 function Gate(props) {
   return (
-    <span className="Gate col-md-2">
+    <span className="Gate col-sm-2">
       <FontAwesomeIcon icon={faArrowRight}/>
       <div className="btn btn-outline-info disabled">{props.value}</div>
       <FontAwesomeIcon icon={faArrowRight}/>
@@ -28,7 +30,7 @@ function Gate(props) {
 
 function SingleOutQubit(props) {
   return (
-    <div className="col-md-2">
+    <div className="col-sm-2">
       <span className="bar">|</span>
       <div className="btn btn-outline-primary bit disabled">
         {props.value}
@@ -40,7 +42,7 @@ function SingleOutQubit(props) {
 
 function TwoOutQubits(props) {
   return (
-    <div className="col-md-2">
+    <div className="col-sm-2">
       <span className="bar">|</span>
       <div className="btn btn-outline-primary bit disabled">{props.value[0]}</div>
       <div className="btn btn-outline-primary bit disabled">{props.value[1]}</div>
@@ -49,9 +51,34 @@ function TwoOutQubits(props) {
   );
 }
 
+function ThreeOutQubits(props) {
+  return (
+    <div className="col-sm-2">
+      <span className="bar">|</span>
+      <div className="btn btn-outline-primary bit disabled">{props.value[0]}</div>
+      <div className="btn btn-outline-primary bit disabled">{props.value[1]}</div>
+      <div className="btn btn-outline-primary bit disabled">{props.value[2]}</div>
+      <FontAwesomeIcon icon={faChevronRight} size='lg'/>
+    </div>
+  );
+}
+
+function FourOutQubits(props) {
+  return (
+    <div className="col-sm-2">
+      <span className="bar">|</span>
+      <div className="btn btn-outline-primary bit disabled">{props.value[0]}</div>
+      <div className="btn btn-outline-primary bit disabled">{props.value[1]}</div>
+      <div className="btn btn-outline-primary bit disabled">{props.value[2]}</div>
+      <div className="btn btn-outline-primary bit disabled">{props.value[3]}</div>
+      <FontAwesomeIcon icon={faChevronRight} size='lg'/>
+    </div>
+  );
+}
+
 function OutBit(props) {
   return (
-    <div className="col-md-2">
+    <div className="col-sm-2">
       <div className="btn btn-outline-primary bit disabled">{props.value}</div>
     </div>
   );
@@ -76,7 +103,7 @@ class BIT extends React.Component {
     return (
       <div className="row">
         <Desc value="A bit is the basic unit of classical information. It can either be 0 (false) or 1 (true). You can toggle it by clicking on it."/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick()}>
             {this.state.value?'1':'0'}
           </button>
@@ -105,7 +132,7 @@ class NOT extends React.Component {
     return (
       <div className="row">
         <Desc value="NOT gate flips the bit"/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick()}>
             {this.state.value?'1':'0'}
           </button>
@@ -139,7 +166,7 @@ class OR extends React.Component {
     return (
       <div className="row">
         <Desc value="OR gate produces true one either bit is true."/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.bitsIn[0]}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bitsIn[1]}</button>
         </div>
@@ -172,7 +199,7 @@ class NOR extends React.Component {
     return (
       <div className="row">
         <Desc value="NOR gate produces false one either bit is true. (opposte of OR gate)"/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.bitsIn[0]}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bitsIn[1]}</button>
         </div>
@@ -205,7 +232,7 @@ class AND extends React.Component {
     return (
       <div className="row">
         <Desc value="AND gate produces true when both input bits are true"/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.bitsIn[0]}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bitsIn[1]}</button>
         </div>
@@ -238,7 +265,7 @@ class NAND extends React.Component {
     return (
       <div className="row">
         <Desc value="NAND gate does the opposite of AND gate."/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.bitsIn[0]}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bitsIn[1]}</button>
         </div>
@@ -279,7 +306,7 @@ class XOR extends React.Component {
     return (
       <div className="row">
         <Desc value="XOR gate produces true when both input bits are different"/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.bit1}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(2)}>{this.state.bit2}</button>
         </div>
@@ -326,20 +353,20 @@ class QUBIT extends React.Component {
         <Desc
           value="Qubit is the basic unit of quantum information. It can either be |0>, |1> or both but with some probability in each.
           Examples of single qubit: |0>, |1>. Examples of two qubit: |00>, |11>, |01>. You can toggle them by clicking on the digits."/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(2)}>
             {this.state.qubitIn?'1':'0'}
           </button>
           <FontAwesomeIcon icon={faChevronRight} size="lg"/>
         </div>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn2[0]}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubitsIn2[1]}</button>
         <FontAwesomeIcon icon={faChevronRight} size='lg'/>
         </div>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(2)}>{this.state.qubitsIn3[0]}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(3)}>{this.state.qubitsIn3[1]}</button>
@@ -370,7 +397,7 @@ class X extends React.Component {
     return (
       <div className="row">
         <Desc value="X quantum gate flips the qubit, similar to NOT classical gate."/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick()}>
             {this.state.qubitIn?'1':'0'}
@@ -410,7 +437,7 @@ class SWAP extends React.Component {
     return (
       <div className="row">
         <Desc value="SWAP quantum gate swaps the two qubits."/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubitsIn[1]}</button>
@@ -453,7 +480,7 @@ class CNOT extends React.Component {
     return (
       <div className="row">
         <Desc value="CNOT quantum gate flips the second qubit if the first qubit is |1>."/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubitsIn[1]}</button>
@@ -498,7 +525,7 @@ class CCNOT extends React.Component {
     return (
       <div className="row">
         <Desc value="CCNOT quantum gate (also called Toffoli gate) flips the third qubit if the first two qubits are |1>."/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]?'1':'0'}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubitsIn[1]?'1':'0'}</button>
@@ -506,7 +533,7 @@ class CCNOT extends React.Component {
           <FontAwesomeIcon icon={faChevronRight} size='lg'/>
         </div>
           <Gate value="CCNOT"/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <div className="btn btn-outline-primary bit disabled">{this.state.qubitsOut[0]?'1':'0'}</div>
           <div className="btn btn-outline-primary bit disabled">{this.state.qubitsOut[1]?'1':'0'}</div>
@@ -550,7 +577,7 @@ class CSWAP extends React.Component {
     return (
       <div className="row">
         <Desc value="CSWAP quantum gate (also called Fredkin gate) swaps the last two qubits if the first qubit is |1>."/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]?'1':'0'}</button>
           <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubitsIn[1]?'1':'0'}</button>
@@ -558,7 +585,7 @@ class CSWAP extends React.Component {
           <FontAwesomeIcon icon={faChevronRight} size='lg'/>
         </div>
           <Gate value="CSWAP"/>
-        <div className="col-md-2">
+        <div className="col-sm-2">
           <span className="bar">|</span>
           <div className="btn btn-outline-primary bit disabled">{this.state.qubitsOut[0]?'1':'0'}</div>
           <div className="btn btn-outline-primary bit disabled">{this.state.qubitsOut[1]?'1':'0'}</div>
@@ -616,6 +643,103 @@ class App extends React.Component {
           <p className="col-md-6">Quantum circuit diagram of CSWAP gate looks like:</p>
           <img src={cswapgate}/>
         </div>
+        <h2 className="text-left">Adder circuits</h2>
+        <Adder3 />
+        <div className="row">
+          <p className="col-md-6">Quantum circuit diagram of half adder using 3-qubit:</p>
+          <img src={adder3}/>
+        </div>
+        <Adder4 />
+        <div className="row">
+          <p className="col-md-6">Quantum circuit diagram of half adder using 4-qubit:</p>
+          <img src={adder4}/>
+        </div>
+      </div>
+    );
+  }
+}
+
+class Adder3 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      qubitsIn:  Array(2).fill(0),
+      qubitsOut: Array(2).fill(0),
+    };
+  }
+
+  handleClick(i) {
+    const qubitsIn  = this.state.qubitsIn.slice();
+    qubitsIn[i] = qubitsIn[i]==1?0:1;
+
+    const qubitsOut = this.state.qubitsOut.slice();
+    if (qubitsIn[0]==1) {
+      qubitsOut[0] = qubitsIn[1]==1?0:1;
+    } else {
+      qubitsOut[0] = qubitsIn[1];
+    }
+    qubitsOut[1] = (qubitsIn[0] && qubitsIn[1])?1:0;
+    this.setState({
+      qubitsIn:  qubitsIn,
+      qubitsOut: qubitsOut,
+    });
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <Desc value="This circuit performs addition by overwriting the second the qubit."/>
+        <div className="col-sm-2">
+          <span className="bar">|</span>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]}</button>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubitsIn[1]}</button>
+          <FontAwesomeIcon icon={faChevronRight} size='lg'/>
+        </div>
+        <Gate value="Adder3"/>
+        <TwoOutQubits value={this.state.qubitsOut}/>
+      </div>
+    );
+  }
+}
+
+class Adder4 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      qubitsIn:  Array(2).fill(0),
+      qubitsOut: Array(2).fill(0),
+    };
+  }
+
+  handleClick(i) {
+    const qubitsIn  = this.state.qubitsIn.slice();
+    qubitsIn[i] = qubitsIn[i]==1?0:1;
+
+    const qubitsOut = this.state.qubitsOut.slice();
+    if (qubitsIn[0]==1) {
+      qubitsOut[0] = qubitsIn[1]==1?0:1;
+    } else {
+      qubitsOut[0] = qubitsIn[1];
+    }
+    qubitsOut[1] = (qubitsIn[0] && qubitsIn[1])?1:0;
+    this.setState({
+      qubitsIn:  qubitsIn,
+      qubitsOut: qubitsOut,
+    });
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <Desc value="This circuit performs addition without overwriting any input qubit."/>
+        <div className="col-sm-2">
+          <span className="bar">|</span>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(0)}>{this.state.qubitsIn[0]}</button>
+          <button className="btn btn-outline-primary bit" onClick={() => this.handleClick(1)}>{this.state.qubitsIn[1]}</button>
+          <FontAwesomeIcon icon={faChevronRight} size='lg'/>
+        </div>
+        <Gate value="Adder4"/>
+        <TwoOutQubits value={this.state.qubitsOut}/>
       </div>
     );
   }
