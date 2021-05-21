@@ -51,31 +51,6 @@ function TwoOutQubits(props) {
   );
 }
 
-function ThreeOutQubits(props) {
-  return (
-    <div className="col-sm-2">
-      <span className="bar">|</span>
-      <div className="btn btn-outline-primary bit disabled">{props.value[0]}</div>
-      <div className="btn btn-outline-primary bit disabled">{props.value[1]}</div>
-      <div className="btn btn-outline-primary bit disabled">{props.value[2]}</div>
-      <FontAwesomeIcon icon={faChevronRight} size='lg'/>
-    </div>
-  );
-}
-
-function FourOutQubits(props) {
-  return (
-    <div className="col-sm-2">
-      <span className="bar">|</span>
-      <div className="btn btn-outline-primary bit disabled">{props.value[0]}</div>
-      <div className="btn btn-outline-primary bit disabled">{props.value[1]}</div>
-      <div className="btn btn-outline-primary bit disabled">{props.value[2]}</div>
-      <div className="btn btn-outline-primary bit disabled">{props.value[3]}</div>
-      <FontAwesomeIcon icon={faChevronRight} size='lg'/>
-    </div>
-  );
-}
-
 function OutBit(props) {
   return (
     <div className="col-sm-2">
@@ -619,40 +594,40 @@ class App extends React.Component {
         <X />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of X gate looks like:</p>
-          <img src={xgate}/>
+          <img src={xgate} alt="xgate" />
         </div>
         <h2 className="text-left">2-qubit gates</h2>
         <SWAP />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of SWAP gate looks like:</p>
-          <img src={swapgate}/>
+          <img src={swapgate} alt="swapgate" />
         </div>
         <CNOT />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of CNOT gate looks like:</p>
-          <img src={cnotgate}/>
+          <img src={cnotgate} alt="cNotgate" />
         </div>
         <h2 className="text-left">3-qubit gates</h2>
         <CCNOT />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of CCNOT gate looks like:</p>
-          <img src={ccnotgate}/>
+          <img src={ccnotgate} alt="ccnotgate" />
         </div>
         <CSWAP />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of CSWAP gate looks like:</p>
-          <img src={cswapgate}/>
+          <img src={cswapgate} alt="cswapgate" />
         </div>
         <h2 className="text-left">Adder circuits</h2>
         <Adder3 />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of half adder using 3-qubit:</p>
-          <img src={adder3}/>
+          <img src={adder3} alt="adder3" />
         </div>
         <Adder4 />
         <div className="row">
           <p className="col-md-6">Quantum circuit diagram of half adder using 4-qubit:</p>
-          <img src={adder4}/>
+          <img src={adder4} alt="Adder4" />
         </div>
       </div>
     );
